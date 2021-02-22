@@ -17,6 +17,21 @@ const reducer = (state, action) => {
         })
         return { ...state, cart: tempCart }
     }
+    if (action.type === 'DECREASE') {
+        const tempCart = state.cart.map((cartItem) => {
+            if (cartItem.id === action.payload) {
+                return { ...cartItem, amount: cartItem.amount - 1 }
+            }
+            return cartItem;
+        }).filter((cartItem) => cartItem.amount !== 0)
+        return { ...state, cart: tempCart }
+    }
+    if (action.type === 'GET_TOTALS') {
+        const { amount, total } = state.cart.reduce((cartAmount, cartTotal) => {
+            const { price, amount } = cartItem;
+
+        })
+    }
     return state
 }
 export default reducer
